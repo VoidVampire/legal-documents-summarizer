@@ -1,0 +1,17 @@
+{
+  "name": "legal-documents-summarizer",
+  "version": "1.0.0",
+  "description": "A web application that facilitates the summarization of Indian legal proceedings documents.",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.1.0"
+  }
+}
