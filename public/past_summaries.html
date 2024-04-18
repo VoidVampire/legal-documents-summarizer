@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Past Summaries</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="past-summaries.css">
 </head>
 <body class="bg-gray-900 text-white">
     <nav class="bg-gray-800 p-4">
         <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-bold">Legal Document Summarizer</h1>
+            <div class="navbar-container items-center">
+                <h1 class="text-xl font-bold">Legal Document Summarizer</h1>
+            </div>
             <div>
                 <a href="/" class="text-gray-300 hover:text-white mr-4">Home</a>
                 <a href="/past-summaries" class="text-gray-300 hover:text-white">Past Summaries</a>
@@ -31,14 +33,27 @@
         <div class="mb-4">
             <label for="filter" class="block mb-2">Filter by:</label>
             <select id="filter" class="w-full px-4 py-2 rounded border border-gray-400 focus:outline-none focus:border-blue-500">
+                <option value="">Select</option>
                 <option value="date">Date</option>
                 <option value="topic">Topic</option>
             </select>
         </div>
+        
+
+        <!-- New date selection field -->
+        <div id="dateField" class="mb-6 hidden"> <!-- Add mb-6 class -->
+            <label for="startDate">Start Date:</label>
+            <input type="date" id="startDate" class="w-full px-4 py-2 rounded border border-gray-400 focus:outline-none focus:border-blue-500 mb-2"> <!-- Add mb-2 class -->
+            <label for="endDate">End Date:</label>
+            <input type="date" id="endDate" class="w-full px-4 py-2 rounded border border-gray-400 focus:outline-none focus:border-blue-500 mb-2"> <!-- Add mb-2 class -->
+        </div>
+        
+        
 
         <div class="mb-4">
             <label for="sort" class="block mb-2">Sort by:</label>
             <select id="sort" class="w-full px-4 py-2 rounded border border-gray-400 focus:outline-none focus:border-blue-500">
+                <option value="">Select</option>
                 <option value="asc">Ascending</option>
                 <option value="desc">Descending</option>
             </select>
