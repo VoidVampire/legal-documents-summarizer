@@ -1,0 +1,29 @@
+/* shared.css */
+
+/* Global styles */
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+p {
+    font-size: 1rem;
+}
+
+/* Navigation bar styles */
+nav {
+    padding: 1rem;
+}
+
+nav a {
+    text-decoration: none;
+    margin-right: 1rem;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
