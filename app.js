@@ -1,9 +1,12 @@
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
+const { spawn } = require('child_process');
+const ejs = require('ejs');
+
 const app = express();
 
-
+// Configure multer storage and upload
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads/');
@@ -14,14 +17,17 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(express.urlencoded({ extended: true }));
 
+// Set view engine to EJS
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'home.html'));
+  res.render('home', { summary: null }); // Render home.ejs with initial summary as null
 });
+
 
 app.get('/past-summaries', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'past_summaries.html'));
@@ -40,8 +46,33 @@ app.post('/upload', upload.fields([
   const numWords = req.body.numWords;
   console.log('Uploaded files:', pdfFile.filename, keywordsFile.filename);
   console.log('Number of words:', numWords);
-  res.send('Files uploaded successfully');
+
+  // Full path to the PDF file
+  const pdfPath = path.join(__dirname, 'uploads', pdfFile.filename);
+
+  // Execute mlmodel2.py
+  const pythonProcess = spawn('python', ['mlmodel2.py', pdfPath, keywordsFile.path, numWords]);
+  let summary = ''; // Variable to store summary
+
+  // Listen for data from Python stdout
+  pythonProcess.stdout.on('data', (data) => {
+    summary += data.toString(); // Concatenate data to summary
+  });
+
+  // Listen for Python process to close
+  pythonProcess.on('close', (code) => {
+    console.log(`Python process exited with code ${code}`);
+    // Send the summary as JSON response
+    res.json({ summary });
+  });
+
+  // Handle errors
+  pythonProcess.stderr.on('data', (data) => {
+    console.error(`Python stderr: ${data}`);
+    res.status(500).send('Error processing the document');
+  });
 });
+
 
 
 const PORT = process.env.PORT || 3000;
