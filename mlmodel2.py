@@ -4,12 +4,23 @@ from collections import Counter
 import PyPDF2
 import os
 import sys
+from sumy.parsers.plaintext import PlaintextParser
+from sumy.nlp.tokenizers import Tokenizer
+from sumy.summarizers.lex_rank import LexRankSummarizer
+from transformers import pipeline, PegasusForConditionalGeneration, PegasusTokenizer
+from sentence_transformers import SentenceTransformer
+
+def abstractive_summarization(text):
+    model_name = "google/pegasus-xsum"
+    tokenizer = PegasusTokenizer.from_pretrained(model_name)
+    model = PegasusForConditionalGeneration.from_pretrained(model_name)
+    summarizer = pipeline("summarization", model=model, tokenizer=tokenizer)
+    summary = summarizer(text, max_length=200, min_length=int(0.05*len(text)), do_sample=False)[0]['summary_text']
+    return summary
 
 def pdf_to_text(pdf_path):
-    # Open the PDF file
     with open(pdf_path, 'rb') as f:
         reader = PyPDF2.PdfReader(f)
-        # Extract text from each page
         text = ''
         for page_num in range(len(reader.pages)):
             text += reader.pages[page_num].extract_text()
@@ -54,9 +65,19 @@ def summarize_with_dictionary(text, important_words_file, target_word_count):
 
     return summary
 
-# For testing purposes
+
+def sumy_summarize(pdf_text, num_words):
+    parser = PlaintextParser.from_string(pdf_text, Tokenizer("english"))
+    summarizer = LexRankSummarizer()
+
+    avg_words_per_sentence = len(pdf_text.split()) / len(parser.document.sentences)
+    num_sentences = int(num_words / avg_words_per_sentence)
+    
+    summary_sentences = summarizer(parser.document, num_sentences)
+    summary = ' '.join([str(sentence) for sentence in summary_sentences])
+    return summary
+
 if __name__ == "__main__":
-    # Check if correct number of arguments are provided
     if len(sys.argv) != 4:
         print("Usage: python mlmodel2.py <pdf_filename> <important_words_file> <target_word_count>")
         sys.exit(1)
@@ -68,5 +89,10 @@ if __name__ == "__main__":
     # Convert PDF to text
     pdf_text = pdf_to_text(pdf_path)
     # Summarize the text
-    summary = summarize_with_dictionary(pdf_text, important_words_file, target_word_count)
-    print("Summary:\n", summary, flush=True)
+    summary_suzy = sumy_summarize(pdf_text, target_word_count)
+    print("Summary:\n", summary_suzy, flush=True)
+    summary_temp = summarize_with_dictionary(pdf_text, important_words_file, target_word_count)
+    print("Summary temp:\n", summary_temp, flush=True)
+    summary_tra = abstractive_summarization(pdf_text)
+    print("Summary transformer:\n", summary_tra, flush=True)
+

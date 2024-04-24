@@ -71,7 +71,7 @@ app.post('/upload', upload.fields([
     console.error(`Python stderr: ${data}`);
     res.status(500).send('Error processing the document');
   });
-});
+}); 
 
 
 
