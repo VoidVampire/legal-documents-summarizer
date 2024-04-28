@@ -7,16 +7,16 @@ import sys
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lex_rank import LexRankSummarizer
-from transformers import pipeline, PegasusForConditionalGeneration, PegasusTokenizer
-from sentence_transformers import SentenceTransformer
+# from transformers import pipeline, PegasusForConditionalGeneration, PegasusTokenizer
+# from sentence_transformers import SentenceTransformer
 
-def abstractive_summarization(text):
-    model_name = "google/pegasus-xsum"
-    tokenizer = PegasusTokenizer.from_pretrained(model_name)
-    model = PegasusForConditionalGeneration.from_pretrained(model_name)
-    summarizer = pipeline("summarization", model=model, tokenizer=tokenizer)
-    summary = summarizer(text, max_length=200, min_length=int(0.05*len(text)), do_sample=False)[0]['summary_text']
-    return summary
+# def abstractive_summarization(text):
+#     model_name = "google/pegasus-xsum"
+#     tokenizer = PegasusTokenizer.from_pretrained(model_name)
+#     model = PegasusForConditionalGeneration.from_pretrained(model_name)
+#     summarizer = pipeline("summarization", model=model, tokenizer=tokenizer)
+#     summary = summarizer(text, max_length=200, min_length=int(0.05*len(text)), do_sample=False)[0]['summary_text']
+#     return summary
 
 def pdf_to_text(pdf_path):
     with open(pdf_path, 'rb') as f:
@@ -28,6 +28,8 @@ def pdf_to_text(pdf_path):
 
 
 def summarize_with_dictionary(text, important_words_file, target_word_count):
+    nltk.download('stopwords')
+    nltk.download('punkt')
     sentences = sent_tokenize(text)
 
     important_words = set()
@@ -93,6 +95,6 @@ if __name__ == "__main__":
     print("Summary:\n", summary_suzy, flush=True)
     summary_temp = summarize_with_dictionary(pdf_text, important_words_file, target_word_count)
     print("Summary temp:\n", summary_temp, flush=True)
-    summary_tra = abstractive_summarization(pdf_text)
-    print("Summary transformer:\n", summary_tra, flush=True)
+    #summary_tra = abstractive_summarization(pdf_text)
+    #print("Summary transformer:\n", summary_tra, flush=True)
 
