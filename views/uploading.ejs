@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Document Summarizer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Legal Document Summarizer</h1> 
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/uploading">Upload Document</a></li>
+                    <li><a href="/previous">Previous Summaries</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="upload" class="section">
+            <h2>Upload Document</h2>
+            <form id="uploadForm" enctype="multipart/form-data" action="/upload" method="post">
+                <label for="pdfFile">Select Document:</label>
+                <input type="file" id="pdfFile" accept=".pdf,.doc,.docx" name="pdfFile" required>
+                <div id="modal-container"></div>
+                <div><button type="submit">Upload</button></div>
+                
+            </form>
+            <div id="progressBar" class="progress-bar"></div>
+            <h2>Summary</h2>
+            <p id="summary"></p>
+        </section>
+        <footer>
+            <div class="container">
+                <p>&copy; 2024 Legal Document Summarizer</p>
+            </div>
+        </footer>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>

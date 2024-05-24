@@ -1,13 +1,192 @@
-/* styles.css */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-h1 {
-    color: #ca5959;
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f2f2f2;
 }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center; 
+  justify-content: space-between; 
+  height: 150px; 
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+}
+
+header a {
+  color: white;
+  /* Set the color of anchor tags inside the header to white */
+  text-decoration: none;
+  /* Remove underline from anchor tags */
+}
+
+header h1 {
+  font-size: 1.8rem;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav ul li {
+  display: inline;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+}
+
+main {
+  padding: 40px 0;
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+form input[type="file"] {
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  height: 20px;
+  background-color: #ddd;
+  margin-bottom: 10px;
+}
+
+.download-button {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.download-button:hover {
+  background-color: #555;
+}
+
+
+.filter-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filter-field label {
+  width: 100px;
+  margin-right: 10px;
+}
+
+.filter-field input[type="date"],
+.filter-field select {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.filter-field select {
+  width: auto; /* Allow the select to adjust its width based on content */
+}
+
+.filter-field button {
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.filter-field button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.welcome-heading {
+  text-align: left;
+  margin-bottom: 10px; /* Decrease space between lines */
+  margin-top:-15px;
+}
+
+.welcome-heading h2 {
+  font-size: 24px;
+  margin-bottom: 0; /* Remove default margin */
+}
+
+.welcome-heading h1 {
+  font-size: 48px; /* Increase size of second line */
+  margin-top: 0; /* Remove default margin */
+  font-weight: bold;
+}
+
+
+/* Other styles remain the same */
 
 p {
-    color: #666;
+  margin-bottom: 15px; /* Add space below paragraphs */
 }
+
+ul {
+  margin-bottom: 15px; /* Add space below the list */
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;; /* Button color */
+  color: #fff; /* Text color */
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0056b3; /* Button color on hover */
+}
+
+
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+

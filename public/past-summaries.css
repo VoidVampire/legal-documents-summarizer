@@ -1,0 +1,113 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Navbar Styles */
+nav {
+    background-color: #1a202c;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav a {
+    color: #cbd5e0;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+nav a:hover {
+    color: #ffffff;
+}
+
+/* Form Styles */
+input[type="text"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cbd5e0;
+    border-radius: 5px;
+    background-color: #ffffff;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+input[type="text"]:focus,
+select:focus {
+    outline: none;
+    border-color: #4a5568;
+}
+
+/* Custom Border Styles */
+.custom-border {
+    border-width: 2px;
+    border-style: dashed;
+    border-color: #3182ce;
+}
+
+/* Heading Styles */
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Card Styles (for displaying summaries) */
+.card {
+    border: 1px solid #cbd5e0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #1a202c;
+    color: #cbd5e0;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Adjusting text color in dialog boxes */
+.dialog-box {
+    color: #000000; /* Change text color to black */
+}
+
+/* Adjusting background color in dialog boxes */
+.dialog-box {
+    background-color: #ffffff; /* Change background color to white */
+}
+
+#search {
+    color: #000000; /* Change text color to black */
+}
+
+select {
+    color: #000000; /* Change text color to black */
+}
+
+#dateField label {
+    color: #cbd5e0; /* Change label text color */
+}
+
+#dateField input[type="date"] {
+    color: #000000; /* Change date input text color */
+}
+/* Add margin-bottom for date input fields */
+#dateField input[type="date"] {
+    margin-bottom: 10px;
+}
