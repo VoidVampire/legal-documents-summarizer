@@ -1,0 +1,160 @@
+/* previous-styles.css */
+
+/* Reset and Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f2f2f2;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  /* Header Styles */
+
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+  }
+  
+  header a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  header h1 {
+    font-size: 1.8rem;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  nav ul {
+    list-style-type: none;
+  }
+  
+  nav ul li {
+    display: inline;
+  }
+  
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+  }
+  
+  /* Main Content Styles */
+
+  main {
+    padding: 40px 0;
+  }
+  
+  .section {
+    margin-bottom: 40px;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+  }
+  
+  form input[type="file"] {
+    margin-bottom: 10px;
+  }
+  
+  .progress-bar {
+    height: 20px;
+    background-color: #ddd;
+    margin-bottom: 10px;
+  }
+
+  /* Adjust the flex properties to make the date container smaller */
+.filter-field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Allow flex items to wrap */
+}
+
+.filter-field label {
+    width: 100px;
+    margin-right: 10px;
+    flex: 0 0 auto; /* Reset the flex basis to auto */
+}
+
+.filter-field input[type="date"],
+.filter-field select {
+    padding: 6px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    flex: 1; /* Let the input fields and select fill remaining space */
+    margin-right: 10px; /* Add some spacing between fields */
+}
+
+
+  
+  .filter-field select {
+    width: auto; /* Allow the select to adjust its width based on content */
+  }
+  
+  .filter-field button {
+    padding: 12px 24px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    outline: none; /* Remove default focus outline */
+}
+
+.filter-field button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+main div ul {
+    list-style: none;
+    padding: 0;
+}
+
+main div ul li {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.summary-container {
+    margin: 4px auto; /* Adjust the margin to create space */
+    padding: 6px;
+    text-align: left; /* Align the text to the left */
+}
+
+  
+  /* Footer Styles */
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+  }
+  

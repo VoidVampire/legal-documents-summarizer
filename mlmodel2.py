@@ -7,6 +7,7 @@ import sys
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lex_rank import LexRankSummarizer
+
 # from transformers import pipeline, PegasusForConditionalGeneration, PegasusTokenizer
 # from sentence_transformers import SentenceTransformer
 
@@ -27,7 +28,8 @@ def pdf_to_text(pdf_path):
         return text
 
 
-def summarize_with_dictionary(text, important_words_file, target_word_count):
+def summarize_with_dictionary(text, important_words_file, target_word_count):    
+
     nltk.download('stopwords')
     nltk.download('punkt')
     sentences = sent_tokenize(text)
@@ -79,6 +81,16 @@ def sumy_summarize(pdf_text, num_words):
     summary = ' '.join([str(sentence) for sentence in summary_sentences])
     return summary
 
+def write_summary_to_file(summary, pdf_filename):
+    # Extract the file name without extension
+    pdf_name_without_ext = pdf_filename;
+    # Generate the text file name with .txt extension
+    txt_filename = f"{pdf_name_without_ext}.txt"
+    txtpath = txt_filename
+    # Write the summary to the text file
+    with open(txtpath, 'w') as txt_file:
+        txt_file.write(summary)
+
 if __name__ == "__main__":
     if len(sys.argv) != 4:
         print("Usage: python mlmodel2.py <pdf_filename> <important_words_file> <target_word_count>")
@@ -90,6 +102,17 @@ if __name__ == "__main__":
 
     # Convert PDF to text
     pdf_text = pdf_to_text(pdf_path)
+
+# Extract the file name without the extension
+    file_name_without_ext = os.path.splitext(os.path.basename(pdf_path))[0]
+    # Summarize the text
+    summary_suzy = sumy_summarize(pdf_text, target_word_count)
+    print("Summary:\n", summary_suzy, flush=True)
+
+    write_summary_to_file(summary_suzy, file_name_without_ext)
+    #print("\n\n\n\n")
+    #summary_temp = summarize_with_dictionary(pdf_text, important_words_file, target_word_count)
+    #print("Summary temp:\n", summary_temp, flush=True)
     # Summarize the text
     summary_suzy = sumy_summarize(pdf_text, target_word_count)
     print("Summary:\n", summary_suzy, flush=True)
@@ -97,4 +120,3 @@ if __name__ == "__main__":
     print("Summary temp:\n", summary_temp, flush=True)
     #summary_tra = abstractive_summarization(pdf_text)
     #print("Summary transformer:\n", summary_tra, flush=True)
-
