@@ -3,7 +3,10 @@ const multer = require('multer');
 const path = require('path');
 const { spawn } = require('child_process');
 const ejs = require('ejs');
+
 const summariesDirectory = path.join(__dirname, 'summaries');
+
+
 
 const app = express();
 
@@ -27,6 +30,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.get('/', (req, res) => {
   res.render('home', { summary: null }); // Render home.ejs with initial summary as null
+
 });
 
 app.post('/upload', upload.fields([
@@ -93,9 +97,59 @@ app.get('/previous', (req, res) => {
 });
 
 
+});
+
+
+app.get('/past-summaries', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'past_summaries.html'));
+});
+
+app.post('/upload', upload.fields([
+  { name: 'pdfFile', maxCount: 1 },
+  { name: 'keywordsFile', maxCount: 1 },
+]), (req, res) => {
+  if (!req.files || !req.files.pdfFile || !req.files.keywordsFile) {
+    return res.status(400).send('No PDF or keywords file uploaded');
+  }
+
+  const pdfFile = req.files.pdfFile[0];
+  const keywordsFile = req.files.keywordsFile[0];
+  const numWords = req.body.numWords;
+  console.log('Uploaded files:', pdfFile.filename, keywordsFile.filename);
+  console.log('Number of words:', numWords);
+
+  // Full path to the PDF file
+  const pdfPath = path.join(__dirname, 'uploads', pdfFile.filename);
+
+  // Execute mlmodel2.py
+  const pythonProcess = spawn('python', ['mlmodel2.py', pdfPath, keywordsFile.path, numWords]);
+  let summary = ''; // Variable to store summary
+
+  // Listen for data from Python stdout
+  pythonProcess.stdout.on('data', (data) => {
+    summary += data.toString(); // Concatenate data to summary
+  });
+
+  // Listen for Python process to close
+  pythonProcess.on('close', (code) => {
+    console.log(`Python process exited with code ${code}`);
+    // Send the summary as JSON response
+    res.json({ summary });
+  });
+
+  // Handle errors
+  pythonProcess.stderr.on('data', (data) => {
+    console.error(`Python stderr: ${data}`);
+    res.status(500).send('Error processing the document');
+  });
+}); 
+
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+
   console.log(summariesDirectory);
+
 });

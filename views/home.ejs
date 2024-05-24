@@ -38,7 +38,40 @@
       <a href="/uploading" class="button">Upload Document</a>
     </div>
   </main>
+      <h1>Legal Document Summarizer</h1>
+      <nav>
+        <ul>
+          <li><a href="#upload">Upload Document</a></li>
+          <li><a href="#previous">Previous Summaries</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
+  <main>
+    <section id="upload" class="section">
+      <div class="container">
+        <h2>Upload Document</h2>
+        <form id="uploadForm" enctype="multipart/form-data" action="/upload" method="post"> <!-- Add action attribute -->
+            <label for="pdfFile">Select Document:</label>
+            <input type="file" id="pdfFile" accept=".pdf,.doc,.docx" name="pdfFile" required> <!-- Add name attribute -->
+            <span id="pdfFileName"></span>
+            <div id="modal-container"></div>
+            <button type="submit">Upload</button>
+          </form>
+        <div id="progressBar" class="progress-bar"></div> 
+        <h2>Summary</h2><p id="summary"></p>
+      </div>
+    </section>
+
+    <section id="previous" class="section">
+      <div class="container">
+        <h2>Previous Summaries</h2>
+        <!-- Previous summaries will be displayed here -->
+        <ul id="summaryList"></ul>
+      </div>
+    </section>
+  </main>
   <footer>
     <div class="container">
       <p>&copy; 2024 Legal Document Summarizer</p>

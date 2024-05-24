@@ -52,6 +52,7 @@ function handleUpload(event) {
   showModal();
 }
 
+// Adjust the fetch request to handle JSON response and update the <p> tag
 function submitForm() {
   const keywordsFile = document.getElementById('keywordsFile').files[0];
   const numWords = document.getElementById('numWords').value;
@@ -79,6 +80,9 @@ function submitForm() {
   })
     .then((response) => response.json())
     .then((data) => {
+    .then((response) => response.json()) // Parse response as JSON
+    .then((data) => {
+      // Update the <p> tag with the summary
       document.getElementById('summary').textContent = data.summary;
     })
     .catch((error) => {
