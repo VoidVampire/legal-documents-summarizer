@@ -12,72 +12,38 @@
       <h1>Legal Document Summarizer</h1> 
       <nav>
         <ul>
-          <li><a href = "/">Home</a></li>
+          <li><a href="/" class="active">Home</a></li>
           <li><a href="/uploading">Upload Document</a></li>
-          <li><a href="/previous">Previous Summaries</a></li>
+          <li><a href="/past-summaries">Past Summaries</a></li>
         </ul>
       </nav>
     </div>
-      
   </header>
 
   <main>
     <div class="container">
-      <div class="welcome-heading">
-        <h2>Welcome to,</h2>
-        <h1>Legal Document Summarizer</h1>
-      </div>
-      <p>This is a tool designed to help you quickly summarize legal documents for better understanding and efficiency. Simply upload your document, and we'll provide you with a concise summary.</p>
-      <p>Key features:</p>
-      <ul>
-        <li>Efficiently summarize lengthy legal documents</li>
-        <li>Save time and effort in understanding complex legal texts</li>
-        <li>Access previous summaries for quick reference</li>
-      </ul>
-      <p>Get started now by uploading your document!</p>
-      <a href="/uploading" class="button">Upload Document</a>
+        <div class="section">
+            <div class="welcome-heading">
+                <h2 style="font-size: 1.5rem; border: none; color: var(--text-color);">Welcome to the</h2>
+                <h1 style="font-size: 3rem; color: var(--text-bright);">Legal Document Summarizer</h1>
+            </div>
+            <p>This tool is designed to help you quickly summarize legal documents for better understanding and efficiency. Simply upload your document, and our AI will provide you with a concise summary.</p>
+            <p>Key features:</p>
+            <ul>
+                <li>Efficiently summarize lengthy legal documents.</li>
+                <li>Save time and effort understanding complex legal texts.</li>
+                <li>Access, search, and filter previous summaries for quick reference.</li>
+            </ul>
+            <br>
+            <a href="/uploading" class="button">Get Started</a>
+        </div>
     </div>
-  </main>
-      <h1>Legal Document Summarizer</h1>
-      <nav>
-        <ul>
-          <li><a href="#upload">Upload Document</a></li>
-          <li><a href="#previous">Previous Summaries</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section id="upload" class="section">
-      <div class="container">
-        <h2>Upload Document</h2>
-        <form id="uploadForm" enctype="multipart/form-data" action="/upload" method="post"> <!-- Add action attribute -->
-            <label for="pdfFile">Select Document:</label>
-            <input type="file" id="pdfFile" accept=".pdf,.doc,.docx" name="pdfFile" required> <!-- Add name attribute -->
-            <span id="pdfFileName"></span>
-            <div id="modal-container"></div>
-            <button type="submit">Upload</button>
-          </form>
-        <div id="progressBar" class="progress-bar"></div> 
-        <h2>Summary</h2><p id="summary"></p>
-      </div>
-    </section>
-
-    <section id="previous" class="section">
-      <div class="container">
-        <h2>Previous Summaries</h2>
-        <!-- Previous summaries will be displayed here -->
-        <ul id="summaryList"></ul>
-      </div>
-    </section>
   </main>
+      
   <footer>
     <div class="container">
-      <p>&copy; 2024 Legal Document Summarizer</p>
+      <p>© 2024 Legal Document Summarizer</p>
     </div>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
